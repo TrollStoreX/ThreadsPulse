@@ -73,9 +73,14 @@ jobs:
 
       - name: 編譯 rootless（無根越獄）
         shell: bash
+        env:
+          VERSION: ${{ steps.ver.outputs.version }}
         run: |
           set -e
           export THEOS="$HOME/theos"
+          # theos 的 .deb 版本號取自 control，這裡同步成 TPVersion.h 的版本（結束後還原）
+          trap 'git checkout -- control' EXIT
+          perl -pi -e "s/^Version: .*/Version: ${VERSION}/" control
           gmake clean >/dev/null 2>&1 || true
           gmake FINALPACKAGE=1 \
             TARGET="iphone:clang:${SDK_VERSION}:${MIN_IOS}" \
@@ -86,20 +91,21 @@ jobs:
 
       - name: 編譯 roothide（RootHide）
         shell: bash
+        env:
+          VERSION: ${{ steps.ver.outputs.version }}
         run: |
           set -e
           export THEOS="$HOME/theos-rh"
-          # RootHide 的 bootstrap 由 ElleKit 提供 mobilesubstrate，換成 ellekit 比較準
-          cp control control.orig
-          trap 'mv -f control.orig control' EXIT
-          perl -pi -e 's/^Depends: mobilesubstrate$/Depends: ellekit/' control
+          # 版本號同步成 TPVersion.h（結束後還原 control，不污染工作區）
+          trap 'git checkout -- control' EXIT
+          perl -pi -e "s/^Version: .*/Version: ${VERSION}/" control
           gmake clean >/dev/null 2>&1 || true
           gmake FINALPACKAGE=1 \
             TARGET="iphone:clang:${SDK_VERSION}:${MIN_IOS}" \
             THEOS_PACKAGE_SCHEME=roothide \
             THEOS_PACKAGE_DIR="$PWD/build/roothide" \
             package
-          mv -f control.orig control
+          git checkout -- control
           ls -la build/roothide
 
       - name: 整理產出
