@@ -1,0 +1,145 @@
+/* ThreadsPulse — en */
+
+"Block Ads" = "Block Ads";
+"Remove URL Tracking" = "Remove URL Tracking";
+"Automatically strip xmt, igshid, utm_* and more when copying, sharing or opening links" = "Automatically strip xmt, igshid, utm_* and more when copying, sharing or opening links";
+"Download" = "Download";
+"Download Button" = "Download Button";
+"Video" = "Video";
+"Default Playback Speed" = "Default Playback Speed";
+"Time" = "Time";
+"Post Time Format" = "Post Time Format";
+"Backup" = "Backup";
+"Export your settings to a file, and import it after reinstalling or on another device." = "Export your settings to a file, and import it after reinstalling or on another device.";
+"Export Settings" = "Export Settings";
+"Import Settings" = "Import Settings";
+"Advanced" = "Advanced";
+"Debug Hints" = "Debug Hints";
+"About" = "About";
+"Version" = "Version";
+"Reset All Settings" = "Reset All Settings";
+"Reset All Settings?" = "Reset All Settings?";
+"Cancel" = "Cancel";
+"Reset" = "Reset";
+"ThreadsPulse loaded: tap “Pulse” at the top-right of Settings, or long-press with three fingers for 1 second" = "ThreadsPulse loaded: tap “Pulse” at the top-right of Settings, or long-press with three fingers for 1 second";
+"Blocked an ad request" = "Blocked an ad request";
+"Dropped sponsored items" = "Dropped sponsored items";
+"Blocked ad insertion" = "Blocked ad insertion";
+"Cleaned tracking from copied link" = "Cleaned tracking from copied link";
+"Download button added" = "Download button added";
+"Download All Media" = "Download All Media";
+"Download Images Only" = "Download Images Only";
+"Download Videos Only" = "Download Videos Only";
+"Download This Image" = "Download This Image";
+"Download All Images in Post" = "Download All Images in Post";
+"No media found" = "No media found";
+"No image found" = "No image found";
+"No download link found. Play the video for a moment, then try again." = "No download link found. Play the video for a moment, then try again.";
+"%ld items skipped (no download link)" = "%ld items skipped (no download link)";
+"Downloading…" = "Downloading…";
+"Downloading %ld of %ld" = "Downloading %ld of %ld";
+"Download failed, please try again later" = "Download failed, please try again later";
+"Saved to Photos" = "Saved to Photos";
+"Saved %ld items to Photos" = "Saved %ld items to Photos";
+"Saved %ld, failed %ld" = "Saved %ld, failed %ld";
+"Photos access denied — choose where to save" = "Photos access denied — choose where to save";
+"Copy" = "Copy";
+"Close" = "Close";
+"Export failed" = "Export failed";
+"Invalid settings file" = "Invalid settings file";
+"Imported %ld settings" = "Imported %ld settings";
+"Found %ld of %ld items" = "Found %ld of %ld items";
+"Version %@" = "Version %@";
+"Enhancements for Threads" = "Enhancements for Threads";
+"Donate" = "Donate";
+"Buy Me a Coffee" = "Buy Me a Coffee";
+"Support ThreadsPulse on Ko-fi" = "Support ThreadsPulse on Ko-fi";
+"Your support keeps ThreadsPulse updated. Thank you!" = "Your support keeps ThreadsPulse updated. Thank you!";
+"Interactions" = "Interactions";
+"Like this post?" = "Like this post?";
+"Like" = "Like";
+"Save Profile Picture" = "Save Profile Picture";
+"Like confirmation shown" = "Like confirmation shown";
+"Relative" = "Relative";
+"Date & Time" = "Date & Time";
+"With Seconds" = "With Seconds";
+"Example: %@" = "Example: %@";
+"3h" = "3h";
+"Turning ad blocking on or off takes effect after refreshing the feed or restarting the app." = "Turning ad blocking on or off takes effect after refreshing the feed or restarting the app.";
+"Hide sponsored posts in the feed" = "Hide sponsored posts in the feed";
+"Download Original Size" = "Download Original-Size Photos";
+"Like Confirmation" = "Like Confirmation";
+"Ask before a like is sent, to prevent accidental taps. Removing a like won't ask." = "Ask before a like is sent, to prevent accidental taps. Removing a like won't ask.";
+"Turn on when a feature stops working. Hints show which features are active, to help report problems." = "Turn on when a feature stops working. Hints show which features are active, to help report problems.";
+"Diagnostics" = "Diagnostics";
+"Getting original photos…" = "Getting original photos…";
+"Long-press: choose photos or videos only\nTap: download all photos and videos" = "Long-press: choose photos or videos only\nTap: download all photos and videos";
+"Download Original Profile Pictures" = "Download Original-Size Profile Pictures";
+"Getting original photo…" = "Getting original photo…";
+"Done" = "Done";
+"Link copied" = "Link copied";
+"Open" = "Open";
+"The copied link isn't a Threads link" = "The copied link isn't a Threads link";
+"Opened link from clipboard" = "Opened link from clipboard";
+"Account switched" = "Account switched";
+"Clipboard Links" = "Clipboard Links";
+"When a Link Is Found" = "When a Link Is Found";
+"Ask" = "Ask";
+"Auto-open" = "Auto-open";
+"Prompt Position" = "Prompt Position";
+"Top" = "Top";
+"Middle" = "Middle";
+"Bottom" = "Bottom";
+
+/* 首頁動態 */
+"Home Feed" = "Home Feed";
+"Keep Feed Position" = "Keep Feed Position";
+"Coming back from the background won't refresh the home feed, jump to the top or switch tabs" = "Coming back from the background won't refresh the home feed, jump to the top or switch tabs";
+"Keep For" = "Keep For";
+"10 min" = "10 min";
+"30 min" = "30 min";
+"No Limit" = "No Limit";
+"Disable Pull to Refresh" = "Disable Pull to Refresh";
+"Pulling down at the top of the home feed won't refresh it, and the feed stops at the top without bouncing" = "Pulling down at the top of the home feed won't refresh it, and the feed stops at the top without bouncing";
+"Home Tab: Don't Scroll to Top" = "Home Tab: Don't Scroll to Top";
+"Home Tab: Don't Refresh" = "Home Tab: Don't Refresh";
+"Feed position kept" = "Feed position kept";
+"Pull to refresh blocked" = "Pull to refresh blocked";
+"Scroll to top blocked" = "Scroll to top blocked";
+"Home tab refresh blocked" = "Home tab refresh blocked";
+
+/* 追蹤建議 */
+"Stop the \"Suggested for you\" sheet from popping up" = "Stop the \"Suggested for you\" sheet from popping up";
+"Hide Follow Suggestions" = "Hide Follow Suggestions";
+"Follow suggestions hidden" = "Follow suggestions hidden";
+
+/* 介面 */
+"Interface" = "Interface";
+"Keep Tab Bar Visible" = "Keep Tab Bar Visible";
+"Scrolling won't hide the tab bar at the bottom; it always stays on screen" = "Scrolling won't hide the tab bar at the bottom; it always stays on screen";
+
+/* 1.15.2 排版調整 */
+"Ads & Privacy" = "Ads & Privacy";
+"When you come back or switch accounts, detect a copied Threads link and open it" = "When you come back or switch accounts, detect a copied Threads link and open it";
+"With everything here turned on, new posts only load after you fully close and reopen Threads." = "With everything here turned on, new posts only load after you fully close and reopen Threads.";
+"If you're away longer than this, the feed refreshes as usual" = "If you're away longer than this, the feed refreshes as usual";
+
+/* 1.15.3 文字修正 */
+"Auto-open reads the clipboard directly. If iOS asks to allow pasting every time, go to Settings › Threads › Paste from Other Apps and choose Allow." = "Auto-open reads the clipboard directly. If iOS asks to allow pasting every time, go to Settings › Threads › Paste from Other Apps and choose Allow.";
+"If the original size isn't available, the regular size is downloaded.\nTo save a profile picture, long-press it on a profile, or open it full screen and tap ↓ in the bottom-right corner." = "If the original size isn't available, the regular size is downloaded.\nTo save a profile picture, long-press it on a profile, or open it full screen and tap ↓ in the bottom-right corner.";
+"Videos play at this speed by default, and return to it after you let go of a long-press 2x." = "Videos play at this speed by default, and return to it after you let go of a long-press 2x.";
+"When you're scrolled down the home feed, tapping the Home tab won't jump back to the top, so you stay where you were" = "When you're scrolled down the home feed, tapping the Home tab won't jump back to the top, so you stay where you were";
+"When you're already at the top of the home feed, tapping the Home tab won't refresh or load new posts" = "When you're already at the top of the home feed, tapping the Home tab won't refresh or load new posts";
+"Detect Copied Links" = "Detect Copied Links";
+
+/* 複製個人檔案資訊 */
+"Copy Profile Info" = "Copy Profile Info";
+"On a profile, long-press the name, username, bio or profile picture to copy the name, username or bio" = "On a profile, long-press the name, username, bio or profile picture to copy the name, username or bio";
+"Copy Username" = "Copy Username";
+"Copy Bio" = "Copy Bio";
+"Copied" = "Copied";
+
+/* 側載相容修正 */
+"Sideload Compatibility Fix" = "Sideload Compatibility Fix";
+"Keeps you signed in and app group data working after re-signing. Only active on re-signed apps; takes effect after reopening Threads" = "Keeps you signed in and app group data working after re-signing. Only active on re-signed apps; takes effect after reopening Threads";
+"Copy Name" = "Copy Name";

@@ -1,0 +1,145 @@
+/* ThreadsPulse — zh-Hant */
+
+"Block Ads" = "去除廣告";
+"Remove URL Tracking" = "移除網址追蹤碼";
+"Automatically strip xmt, igshid, utm_* and more when copying, sharing or opening links" = "複製／分享／開啟連結時自動清除 xmt、igshid、utm_* 等";
+"Download" = "下載";
+"Download Button" = "下載按鈕";
+"Video" = "影片";
+"Default Playback Speed" = "預設播放速度";
+"Time" = "時間";
+"Post Time Format" = "串文時間格式";
+"Backup" = "備份";
+"Export your settings to a file, and import it after reinstalling or on another device." = "將設定匯出成檔案，重新安裝或換手機後再匯入。";
+"Export Settings" = "匯出設定";
+"Import Settings" = "匯入設定";
+"Advanced" = "進階";
+"Debug Hints" = "除錯提示";
+"About" = "關於";
+"Version" = "版本";
+"Reset All Settings" = "重設所有設定";
+"Reset All Settings?" = "重設所有設定？";
+"Cancel" = "取消";
+"Reset" = "重設";
+"ThreadsPulse loaded: tap “Pulse” at the top-right of Settings, or long-press with three fingers for 1 second" = "ThreadsPulse 已載入：設定頁右上角「Pulse」，或三指長按 1 秒";
+"Blocked an ad request" = "擋下廣告請求";
+"Dropped sponsored items" = "丟棄贊助項目";
+"Blocked ad insertion" = "擋下廣告插入";
+"Cleaned tracking from copied link" = "已清除複製連結的追蹤碼";
+"Download button added" = "已加入下載按鈕";
+"Download All Media" = "下載全部圖片和影片";
+"Download Images Only" = "只下載圖片";
+"Download Videos Only" = "只下載影片";
+"Download This Image" = "下載這張圖片";
+"Download All Images in Post" = "下載串文中所有圖片";
+"No media found" = "找不到圖片或影片";
+"No image found" = "找不到圖片";
+"No download link found. Play the video for a moment, then try again." = "找不到下載連結。請先讓影片播放一下再試一次。";
+"%ld items skipped (no download link)" = "略過 %ld 個項目（找不到下載連結）";
+"Downloading…" = "下載中…";
+"Downloading %ld of %ld" = "下載中 %ld／%ld";
+"Download failed, please try again later" = "下載失敗，請稍後再試";
+"Saved to Photos" = "已儲存到照片 App";
+"Saved %ld items to Photos" = "已儲存 %ld 個項目到照片 App";
+"Saved %ld, failed %ld" = "已儲存 %ld 個，%ld 個失敗";
+"Photos access denied — choose where to save" = "未取得照片權限，請選擇儲存位置";
+"Copy" = "複製";
+"Close" = "關閉";
+"Export failed" = "匯出失敗";
+"Invalid settings file" = "設定檔格式不正確";
+"Imported %ld settings" = "已匯入 %ld 項設定";
+"Found %ld of %ld items" = "已找到 %ld／%ld 個項目";
+"Version %@" = "版本 %@";
+"Enhancements for Threads" = "Threads 增強插件";
+"Donate" = "贊助";
+"Buy Me a Coffee" = "請我喝杯咖啡";
+"Support ThreadsPulse on Ko-fi" = "在 Ko-fi 支持 ThreadsPulse";
+"Your support keeps ThreadsPulse updated. Thank you!" = "你的支持是 ThreadsPulse 持續更新的動力，謝謝你！";
+"Interactions" = "互動";
+"Like this post?" = "要對這則串文按讚嗎？";
+"Like" = "按讚";
+"Save Profile Picture" = "儲存大頭貼";
+"Like confirmation shown" = "已顯示按讚確認";
+"Relative" = "相對時間";
+"Date & Time" = "日期時間";
+"With Seconds" = "含秒";
+"Example: %@" = "範例：%@";
+"3h" = "3小時";
+"Turning ad blocking on or off takes effect after refreshing the feed or restarting the app." = "開啟或關閉去廣告後，需重新整理動態或重啟 App 才會生效。";
+"Hide sponsored posts in the feed" = "隱藏動態裡的贊助串文";
+"Download Original Size" = "下載原始尺寸圖片";
+"Like Confirmation" = "按讚確認";
+"Ask before a like is sent, to prevent accidental taps. Removing a like won't ask." = "點愛心時先跳出確認，避免誤按。收回時不會詢問。";
+"Turn on when a feature stops working. Hints show which features are active, to help report problems." = "功能失效時再打開，畫面會提示哪些項目有在運作，方便回報問題。";
+"Diagnostics" = "診斷資訊";
+"Getting original photos…" = "正在取得原圖…";
+"Long-press: choose photos or videos only\nTap: download all photos and videos" = "長按：可選只下載圖片或影片\n點一下：下載全部圖片和影片";
+"Download Original Profile Pictures" = "下載原始尺寸大頭貼";
+"Getting original photo…" = "正在取得原圖…";
+"Done" = "完成";
+"Link copied" = "剪貼簿有連結";
+"Open" = "開啟";
+"The copied link isn't a Threads link" = "剪貼簿裡不是 Threads 連結";
+"Opened link from clipboard" = "已開啟剪貼簿連結";
+"Account switched" = "已切換帳號";
+"Clipboard Links" = "剪貼簿連結";
+"When a Link Is Found" = "偵測到連結時";
+"Ask" = "詢問";
+"Auto-open" = "自動開啟";
+"Prompt Position" = "提示位置";
+"Top" = "上方";
+"Middle" = "中間";
+"Bottom" = "下方";
+
+/* 首頁動態 */
+"Home Feed" = "首頁動態";
+"Keep Feed Position" = "保留動態位置";
+"Coming back from the background won't refresh the home feed, jump to the top or switch tabs" = "從背景回到 Threads 時，首頁不會重新整理、不會跳回最上方，也不會自動切回首頁分頁";
+"Keep For" = "保留時間";
+"10 min" = "10 分鐘";
+"30 min" = "30 分鐘";
+"No Limit" = "不限時間";
+"Disable Pull to Refresh" = "停用下拉重新整理";
+"Pulling down at the top of the home feed won't refresh it, and the feed stops at the top without bouncing" = "在首頁最上方往下拉不會重新整理，畫面停在頂端、不會回彈";
+"Home Tab: Don't Scroll to Top" = "點首頁標籤：不捲回頂端";
+"Home Tab: Don't Refresh" = "點首頁標籤：不重新整理";
+"Feed position kept" = "已保留動態位置";
+"Pull to refresh blocked" = "已擋下下拉重新整理";
+"Scroll to top blocked" = "已擋下捲回頂端";
+"Home tab refresh blocked" = "已擋下點首頁標籤重新整理";
+
+/* 追蹤建議 */
+"Stop the \"Suggested for you\" sheet from popping up" = "不再自動跳出「追蹤對象建議」視窗";
+"Hide Follow Suggestions" = "隱藏追蹤對象建議";
+"Follow suggestions hidden" = "已隱藏追蹤對象建議";
+
+/* 介面 */
+"Interface" = "介面";
+"Keep Tab Bar Visible" = "固定底部標籤列";
+"Scrolling won't hide the tab bar at the bottom; it always stays on screen" = "滑動串文時，最下方的功能標籤列不會自動隱藏，一直固定顯示";
+
+/* 1.15.2 排版調整 */
+"Ads & Privacy" = "廣告與隱私";
+"When you come back or switch accounts, detect a copied Threads link and open it" = "回到 Threads 或切換帳號時，偵測剪貼簿裡的 Threads 連結並開啟";
+"With everything here turned on, new posts only load after you fully close and reopen Threads." = "這裡全部開啟時，只有把 Threads 完全關閉再重新開啟，才會載入新串文。";
+"If you're away longer than this, the feed refreshes as usual" = "離開超過這個時間，回來時會照常重新整理";
+
+/* 1.15.3 文字修正 */
+"Auto-open reads the clipboard directly. If iOS asks to allow pasting every time, go to Settings › Threads › Paste from Other Apps and choose Allow." = "自動開啟會直接讀取剪貼簿，如果 iOS 每次都詢問是否允許貼上，可到「設定 › Threads › 從其他 App 貼上」選擇「允許」。";
+"If the original size isn't available, the regular size is downloaded.\nTo save a profile picture, long-press it on a profile, or open it full screen and tap ↓ in the bottom-right corner." = "無法取得原始尺寸時，會改為下載一般尺寸。\n在個人檔案長按大頭貼，或點開全螢幕後按右下角的 ↓ 儲存。";
+"Videos play at this speed by default, and return to it after you let go of a long-press 2x." = "影片預設以這個速度播放，長按 2 倍速放開後，也會恢復成這個速度。";
+"When you're scrolled down the home feed, tapping the Home tab won't jump back to the top, so you stay where you were" = "滑到首頁下方時點首頁標籤，不會跳回最上方，停在原本的位置";
+"When you're already at the top of the home feed, tapping the Home tab won't refresh or load new posts" = "已經在首頁最上方時點首頁標籤，不會重新整理、不會載入新串文";
+"Detect Copied Links" = "偵測剪貼簿連結";
+
+/* 複製個人檔案資訊 */
+"Copy Profile Info" = "複製個人檔案資訊";
+"On a profile, long-press the name, username, bio or profile picture to copy the name, username or bio" = "在個人檔案長按姓名、用戶名稱、個人簡介或大頭貼，可複製姓名、用戶名稱或個人簡介";
+"Copy Username" = "複製用戶名稱";
+"Copy Bio" = "複製個人簡介";
+"Copied" = "已複製";
+
+/* 側載相容修正 */
+"Sideload Compatibility Fix" = "側載相容修正";
+"Keeps you signed in and app group data working after re-signing. Only active on re-signed apps; takes effect after reopening Threads" = "重新簽名後保持登入，並讓 App 群組資料正常讀寫。只在重新簽名的 App 上啟用；變更後重新開啟 Threads 生效";
+"Copy Name" = "複製姓名";
