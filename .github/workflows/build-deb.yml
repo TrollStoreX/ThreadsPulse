@@ -1,0 +1,147 @@
+# 編譯 ThreadsPulse 越獄插件（.deb），一次產出兩種格式：
+#   rootless ：無根越獄（Dopamine / palera1n rootless，安裝到 /var/jb，架構 iphoneos-arm64）
+#   roothide ：RootHide（jbroot 隨機目錄，架構 iphoneos-arm64e，依賴 ellekit）
+#
+# 觸發：
+#   - 推送到 main／master、開 Pull Request、或在 Actions 頁面按「Run workflow」
+#   - 推送 v 開頭的標籤（例如 v1.18.2）→ 另外自動建立 Release 並附上 .deb
+#
+# 只想要注入好的 Threads IPA，請用「Build IPA」workflow。
+
+name: Build DEB
+
+on:
+  push:
+    branches: [main, master]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  SDK_VERSION: '16.5'   # 編譯用的 iOS SDK
+  MIN_IOS: '15.0'       # 最低支援 iOS 版本
+
+jobs:
+  deb:
+    name: Build DEB (rootless + roothide)
+    runs-on: macos-latest
+    outputs:
+      version: ${{ steps.ver.outputs.version }}
+    steps:
+      - name: 取得原始碼
+        uses: actions/checkout@v4
+
+      - name: 讀取版本號
+        id: ver
+        shell: bash
+        run: |
+          set -e
+          VERSION=$(grep -oE 'TP_VERSION @"[^"]+"' TPVersion.h | grep -oE '[0-9][0-9.]*')
+          if [ -z "$VERSION" ]; then
+            echo "::error::讀不到 TPVersion.h 裡的版本號"
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "ThreadsPulse 版本：$VERSION"
+
+      - name: 安裝相依工具
+        shell: bash
+        run: brew install ldid make dpkg xz
+
+      - name: 安裝 Theos（官方，編 rootless 用）
+        shell: bash
+        run: git clone --recursive --depth 1 https://github.com/theos/theos.git "$HOME/theos"
+
+      - name: 安裝 Theos（RootHide 版，編 roothide 用）
+        shell: bash
+        run: git clone --recursive --depth 1 https://github.com/roothide/theos.git "$HOME/theos-rh"
+
+      - name: 下載 iOS SDK
+        shell: bash
+        run: |
+          set -e
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/theos/sdks.git /tmp/sdks
+          cd /tmp/sdks
+          git sparse-checkout set "iPhoneOS${SDK_VERSION}.sdk"
+          for t in "$HOME/theos" "$HOME/theos-rh"; do
+            cp -R "iPhoneOS${SDK_VERSION}.sdk" "$t/sdks/"
+          done
+          ls -d "$HOME/theos/sdks/iPhoneOS${SDK_VERSION}.sdk" "$HOME/theos-rh/sdks/iPhoneOS${SDK_VERSION}.sdk"
+
+      - name: 編譯 rootless（無根越獄）
+        shell: bash
+        run: |
+          set -e
+          export THEOS="$HOME/theos"
+          gmake clean >/dev/null 2>&1 || true
+          gmake FINALPACKAGE=1 \
+            TARGET="iphone:clang:${SDK_VERSION}:${MIN_IOS}" \
+            THEOS_PACKAGE_SCHEME=rootless \
+            THEOS_PACKAGE_DIR="$PWD/build/rootless" \
+            package
+          ls -la build/rootless
+
+      - name: 編譯 roothide（RootHide）
+        shell: bash
+        run: |
+          set -e
+          export THEOS="$HOME/theos-rh"
+          # RootHide 的 bootstrap 由 ElleKit 提供 mobilesubstrate，換成 ellekit 比較準
+          cp control control.orig
+          trap 'mv -f control.orig control' EXIT
+          perl -pi -e 's/^Depends: mobilesubstrate$/Depends: ellekit/' control
+          gmake clean >/dev/null 2>&1 || true
+          gmake FINALPACKAGE=1 \
+            TARGET="iphone:clang:${SDK_VERSION}:${MIN_IOS}" \
+            THEOS_PACKAGE_SCHEME=roothide \
+            THEOS_PACKAGE_DIR="$PWD/build/roothide" \
+            package
+          mv -f control.orig control
+          ls -la build/roothide
+
+      - name: 整理產出
+        shell: bash
+        env:
+          VERSION: ${{ steps.ver.outputs.version }}
+        run: |
+          set -e
+          mkdir -p dist
+          cp build/rootless/*.deb "dist/ThreadsPulse rootless ${VERSION}.deb"
+          cp build/roothide/*.deb "dist/ThreadsPulse roothide ${VERSION}.deb"
+          # 檢查兩種格式的架構與安裝路徑是否正確
+          for f in dist/*.deb; do
+            echo "=== $f"
+            dpkg-deb -I "$f" | sed -n '1,20p'
+            dpkg-deb -c "$f" | head -20
+          done
+          (cd dist && shasum -a 256 *.deb > SHA256SUMS.txt && cat SHA256SUMS.txt)
+          ls -la dist
+
+      - name: 上傳 Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ThreadsPulse deb ${{ steps.ver.outputs.version }}
+          path: dist/*
+          if-no-files-found: error
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: deb
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: 下載編譯結果
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: 建立 Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ThreadsPulse ${{ needs.deb.outputs.version }}
+          files: dist/*
