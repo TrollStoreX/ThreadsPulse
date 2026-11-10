@@ -1,0 +1,133 @@
+# 編譯 ThreadsPulse，並注入你提供的「已解密」Threads IPA
+#
+# 兩種版本：
+#   sideload  ：證書簽名用（ESign、Feather、Sideloadly＋付費帳號等）。
+#               保留 Threads 原本的延伸功能（小工具、分享等），並加入「在 Threads 開啟」Safari 延伸功能。
+#   noplugins ：SideStore / AltStore 免費帳號用。免費帳號無法簽名延伸功能，所以全部移除。
+#
+# 使用方式：Actions → Build IPA → Run workflow → 填入 IPA 下載網址、選擇版本 → Run
+# 完成後在該次執行頁面最下方的 Artifacts 下載，解壓後就是 IPA。
+#
+# 注意：
+#   - 這個 repo 不提供 Threads 本體，IPA 必須由你自己準備，而且必須是「已解密」的版本。
+#   - 公開 repo 的 Artifacts 任何登入 GitHub 的人都能下載。建議用私人 repo 執行（見 README），
+#     或至少把 IPA 網址存成 Secret（DECRYPTED_IPA_URL），不要直接填在輸入欄。
+#   - 請不要把產出的 IPA 上傳到公開的 Release。
+
+name: Build IPA
+
+on:
+  workflow_dispatch:
+    inputs:
+      ipa_url:
+        description: 'Direct download link to a decrypted Threads IPA (leave empty to use the DECRYPTED_IPA_URL secret)｜已解密 Threads IPA 的直接下載網址（留空則使用 Secret：DECRYPTED_IPA_URL）'
+        required: false
+        default: ''
+      variant:
+        description: 'sideload = certificate signing (with Safari extension); noplugins = SideStore / AltStore free account｜sideload＝證書簽名（含 Safari 延伸功能）；noplugins＝SideStore / AltStore 免費帳號'
+        type: choice
+        options:
+          - both
+          - sideload
+          - noplugins
+        default: both
+
+permissions:
+  contents: read
+
+env:
+  SDK_VERSION: '16.5'
+  MIN_IOS: '15.0'
+
+jobs:
+  build-ipa:
+    runs-on: macos-latest
+    steps:
+      - name: 取得原始碼
+        uses: actions/checkout@v4
+
+      - name: 確認 IPA 網址
+        env:
+          INPUT_URL: ${{ inputs.ipa_url }}
+          SECRET_URL: ${{ secrets.DECRYPTED_IPA_URL }}
+        run: |
+          URL="${INPUT_URL:-$SECRET_URL}"
+          if [ -z "$URL" ]; then
+            echo "::error::請在「ipa_url」填入已解密 Threads IPA 的下載網址，或設定 Secret：DECRYPTED_IPA_URL"
+            exit 1
+          fi
+          echo "::add-mask::$URL"
+          echo "IPA_URL=$URL" >> "$GITHUB_ENV"
+
+      - name: 下載 Threads IPA
+        run: |
+          curl -fL --retry 3 -o Threads.ipa "$IPA_URL"
+          if ! unzip -l Threads.ipa | grep -q 'Payload/.*\.app/Info.plist'; then
+            echo "::error::下載的檔案不是 IPA。請確認網址是「直接下載」連結，不是網頁。"
+            exit 1
+          fi
+          ls -lh Threads.ipa
+
+      - name: 安裝 Theos
+        id: theos
+        uses: ./.github/actions/setup-theos
+        with:
+          sdk-version: ${{ env.SDK_VERSION }}
+
+      - name: 編譯 ThreadsPulse 與 Safari 延伸功能
+        run: |
+          MAKE="gmake FINALPACKAGE=1 TARGET=iphone:clang:${SDK_VERSION}:${MIN_IOS}"
+          $MAKE
+          $MAKE -C OpenThreadsSafariExtension
+
+      - name: 注入 IPA
+        id: inject
+        env:
+          VARIANT: ${{ inputs.variant }}
+          TP_VERSION: ${{ steps.theos.outputs.version }}
+        run: |
+          set -e
+          mkdir -p dist
+          BUNDLE="layout/Library/Application Support/ThreadsPulse/ThreadsPulse.bundle"
+          inject() {   # $1＝版本名稱，其餘＝額外參數
+            local name="$1"; shift
+            python3 -I scripts/inject_ipa.py -i Threads.ipa \
+              -d .theos/obj/ThreadsPulse.dylib -b "$BUNDLE" \
+              -o "dist/$name.ipa" --github-output "$GITHUB_OUTPUT" "$@"
+          }
+          if [ "$VARIANT" = "both" ] || [ "$VARIANT" = "sideload" ]; then
+            inject sideload --appex OpenThreadsSafariExtension/.theos/obj/OpenThreadsSafariExtension.appex
+          fi
+          if [ "$VARIANT" = "both" ] || [ "$VARIANT" = "noplugins" ]; then
+            inject noplugins --no-plugins
+          fi
+
+      - name: 整理檔名
+        env:
+          TP_VERSION: ${{ steps.theos.outputs.version }}
+          THREADS_VERSION: ${{ steps.inject.outputs.threads_version }}
+        run: |
+          cd dist
+          for f in *.ipa; do
+            mv "$f" "Threads ${THREADS_VERSION} + ThreadsPulse ${TP_VERSION} ${f%.ipa}.ipa"
+          done
+          rm -f ../Threads.ipa
+          ls -la
+
+      - name: 上傳 sideload 版
+        if: inputs.variant != 'noplugins'
+        uses: actions/upload-artifact@v4
+        with:
+          name: Threads ${{ steps.inject.outputs.threads_version }} + ThreadsPulse ${{ steps.theos.outputs.version }} sideload
+          path: dist/*sideload.ipa
+          retention-days: 3
+          compression-level: 0
+
+      - name: 上傳 noplugins 版
+        if: inputs.variant != 'sideload'
+        uses: actions/upload-artifact@v4
+        with:
+          name: Threads ${{ steps.inject.outputs.threads_version }} + ThreadsPulse ${{ steps.theos.outputs.version }} noplugins
+          path: dist/*noplugins.ipa
+          retention-days: 3
+          compression-level: 0
