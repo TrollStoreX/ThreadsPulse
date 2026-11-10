@@ -53,14 +53,17 @@ No jailbreak needed: build your own Threads IPA with ThreadsPulse injected using
 **"Open in Threads" Safari extension**: a sideloaded Threads can't receive universal links, so tapping a threads.com link in Safari just stays on the web page. This extension turns threads.com / threads.net links into Threads app links and opens them: posts open the post, profiles open the profile.
 After installing, go to **Settings › Apps › Safari › Extensions** (on iOS 17 and earlier: **Settings › Safari › Extensions**), turn on "Open in Threads", and allow it on threads.com.
 
-### Recommended: use a private repo
+### Set up your own repo (pick one)
 
-**Anyone signed in to GitHub can download the Artifacts of a public repo**, and a fork is always public. The IPA you build contains Threads itself, so a private repo is recommended:
+| Method | Pros | Cons |
+|---|---|---|
+| **Fork** (easiest) | One click; tap **Sync fork** to get new versions | A fork is always **public** |
+| **Import repository** (private) | Can be **private**, so only you can get the IPA | Re-import to get new versions |
 
-1. On this project's page, click **Use this template** → **Create a new repository**, and set **Visibility** to **Private**.
-2. Actions in private repos have a monthly free-minutes limit (macOS minutes count 10×). One build takes about 5–10 minutes.
-
-> Forking also works, but save the IPA link as a Secret (see below) and delete the Artifact from the run page after downloading the IPA.
+- **Fork**: click **Fork** at the top-right of this project's page → **Create fork**.
+  > **Anyone signed in to GitHub can download the Artifacts of a public repo**, and the IPA you build contains Threads itself. If you fork, save the IPA link as a Secret (see below) and delete the Artifact from the run page after downloading the IPA.
+- **Import repository**: click **＋** at the top-right of GitHub → **Import repository**, paste this project's URL into **Your old repository's clone URL**, set **Privacy** to **Private** → **Begin import**.
+  > Actions in private repos have a monthly free-minutes limit (macOS minutes count 10×). One build takes about 5–10 minutes.
 
 ### Steps
 
