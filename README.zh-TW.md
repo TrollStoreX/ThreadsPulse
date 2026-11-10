@@ -53,14 +53,17 @@ Threads（`com.burbn.barcelona`）的 iOS 增強插件。目前版本：**1.18.2
 **「Open in Threads」Safari 延伸功能**：側載的 Threads 收不到通用連結，在 Safari 點 threads.com 連結只會停在網頁。這個延伸功能會把 threads.com／threads.net 的網址轉成 Threads App 的連結並自動開啟：串文開到該串文、個人檔案開到該個人檔案。
 安裝後到 **設定 › App › Safari › 延伸功能**（iOS 17 以前是 **設定 › Safari › 延伸功能**）打開「Open in Threads」，並允許它在 threads.com 上執行。
 
-### 建議：用「私人 repo」執行
+### 準備你自己的 repo（二選一）
 
-**公開 repo 的 Artifacts，任何登入 GitHub 的人都能下載**，而 Fork 出來的 repo 一定是公開的。產出的 IPA 含有 Threads 本體，建議改用私人 repo：
+| 方式 | 優點 | 缺點 |
+|---|---|---|
+| **Fork**（最簡單） | 一鍵建立；有新版時按 **Sync fork** 就能同步 | Fork 一定是**公開**的 |
+| **Import repository**（私人） | 可以設成**私人**，做出來的 IPA 只有你拿得到 | 有新版時要重新匯入一次 |
 
-1. 在本專案頁面按 **Use this template** → **Create a new repository**，**Visibility 選 Private**。
-2. 私人 repo 的 Actions 有每月免費分鐘數限制（macOS 機器分鐘數以 10 倍計算），一次編譯大約 5～10 分鐘。
-
-> 一定要用 Fork 的話也可以，但請把 IPA 網址存成 Secret（見下方），並在下載完 IPA 後到該次執行頁面刪除 Artifact。
+- **Fork**：在本專案頁面右上角按 **Fork** → **Create fork**。
+  > **公開 repo 的 Artifacts，任何登入 GitHub 的人都能下載**，而做出來的 IPA 含有 Threads 本體。用 Fork 的話，請把 IPA 網址存成 Secret（見下方），並在下載完 IPA 後，到該次執行頁面刪除 Artifact。
+- **Import repository**：GitHub 右上角 **＋** → **Import repository**，**Your old repository's clone URL** 貼上本專案網址，**Privacy** 選 **Private** → **Begin import**。
+  > 私人 repo 的 Actions 有每月免費分鐘數限制（macOS 機器分鐘數以 10 倍計算），一次編譯大約 5～10 分鐘。
 
 ### 編譯步驟
 
