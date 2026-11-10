@@ -1,0 +1,9 @@
+Package: com.h4x.threadspulse
+Name: ThreadsPulse
+Version: 1.0.0
+Architecture: iphoneos-arm64
+Description: Threads 增強插件：影片下載、移除網址追蹤碼、去廣告、App 設定選單
+Maintainer: h4x_0x30vm
+Author: h4x_0x30vm
+Section: Tweaks
+Depends: mobilesubstrate
